@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class Tab2Page implements OnInit {
   residuo$: Observable<any>;
   detailsVisible = false;
+  moreDetailsVisible = false;
 
   constructor(
     private parametros: ParametrosService,
@@ -22,6 +23,7 @@ export class Tab2Page implements OnInit {
   ngOnInit(): void {
     this.parametros.getParam('code').subscribe((barcode) => {
       this.detailsVisible = false;
+      this.moreDetailsVisible = false;
       if (!!barcode) {
         this.residuo$ = this.fs.doc(`residuos/${barcode}`).valueChanges();
       } else {
@@ -31,10 +33,14 @@ export class Tab2Page implements OnInit {
   }
 
   getUrl(residuo): string {
-    return `assets/iconosrespel/${residuo.imagen}.jpg`;
+    return `assets/iconosrespel/${residuo.imagen}`;
   }
 
   showDetails() {
     this.detailsVisible = true;
+  }
+
+  showMoreDetails() {
+    this.moreDetailsVisible = true;
   }
 }
