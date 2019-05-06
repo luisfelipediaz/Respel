@@ -1,0 +1,16 @@
+<ion-content>
+  <div *ngIf="residuo$ | async as residuo; else loading">
+    <img [src]="getUrl(residuo)">
+    <img src="/assets/iconosrespel/Boton-Menu.png" class="middle" width="300" (click)="volver()">
+  </div>
+
+  <ng-template #loading>
+    <ion-card style="text-align: center">
+      <ion-card-header>
+        <ion-spinner name="bubbles"></ion-spinner>
+        <br>
+        <ion-text>Cargando...</ion-text>
+      </ion-card-header>
+    </ion-card>
+  </ng-template>
+</ion-content>

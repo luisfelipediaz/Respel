@@ -1,44 +1,9 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Información
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-card *ngIf="residuo$ | async as residuo; else loading">
-    <ion-card-header>
-      <ion-card-subtitle style="text-align: center;">{{residuo.clasificacion}}</ion-card-subtitle>
-      <ion-card-title style="text-align: center;">{{residuo.nombre}}</ion-card-title>
-      <img [src]="getUrl(residuo)">
-      <ion-card-subtitle *ngIf="!detailsVisible">
-        <ion-button fill="clear" (click)="showDetails()">Detalles</ion-button>
-      </ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content *ngIf="detailsVisible">
-      <ion-list>
-        <ion-item>
-          <ion-label><strong>Código Na: </strong>{{residuo.codigoNa}}</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label style="white-space: unset;"><strong>Contenedor: </strong>{{residuo.contenedor}}</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label><strong>Planta: </strong>{{residuo.planta}}</ion-label>
-        </ion-item>
-        <ion-item *ngIf="!moreDetailsVisible">
-          <ion-button fill="clear" (click)="showMoreDetails()">Mas detalles</ion-button>
-        </ion-item>
-        <ion-item *ngIf="moreDetailsVisible">
-          <ion-label style="white-space: unset;"><strong>Id decreto: </strong>{{residuo.IdDecreto}}</ion-label>
-        </ion-item>
-        <ion-item *ngIf="moreDetailsVisible">
-          <ion-label style="white-space: unset;"><strong>Manejo: </strong>{{residuo.manejo}}</ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="residuo$ | async as residuo; else loading">
+    <img [src]="getUrl(residuo)">
+    <img src="/assets/iconosrespel/Boton-Manejo.png" class="middle" width="300" (click)="navegarManejo()">
+    <img src="/assets/iconosrespel/Boton-Planta.png" class="middle" width="300" (click)="navegarPlanta()">
+  </div>
 
   <ng-template #loading>
     <ion-card style="text-align: center">
